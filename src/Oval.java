@@ -2,24 +2,28 @@ public class Oval extends Shape {
 
     public static final String TAG_CLASSNAME = "oval";
 
-    int rowLength; //  the length of oval row wise
-    int colWidth; //  the width of oval col wise
+    //Incremental counters
+    
+    int rowLength; 
+    int colWidth; 
 
 
     public Oval(int rowBase, int colBase, int rowLength, int colLength, char displayChar) {
-        this.rb = rowBase; //center base row point
-        this.cb = colBase; //center base col point
+        this.rb = rowBase; 
+        this.cb = colBase; 
         this.rowLength = rowLength;
         this.colWidth = colLength;
         this.character = displayChar;
     }
 
-    //Using  parametric equation of ellipse to draw oval
-    //angle(theta) is increased from 0 to 360 with step of 12
+    //Angle is changed from 0 - 360
     @Override
     public void draws(Window window) throws Exception {
         for (int theta = 0; theta < 360; theta += 12) {
-            //convert theta to radians
+            
+        	//Math.PI function is used for the conversion of radians
+        	//Math.round is used for getting the value as a whole number and not a decimal
+        	
             double thetaInRadians = (theta * (Math.PI / 180));
             int row = (int) Math.round(rowLength * Math.cos(thetaInRadians)) + rb;
             int col = (int) Math.round(colWidth * Math.sin(thetaInRadians)) + cb;

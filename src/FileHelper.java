@@ -7,12 +7,11 @@ public class FileHelper {
         File file = new File(filesName);
         try {
             if (file.exists()) {
-                //file already exist
-                //delete the existing file
+                //Deleting the file as the file already exists
                 file.delete();
             } else {
-                // create new file
-                file.createNewFile();
+            	       
+            	file.createNewFile();
             }
             return file;
         } catch (IOException e) {
@@ -28,8 +27,10 @@ public class FileHelper {
         printsWriter.close();
     }
 
+    
     public static void readsFromFile(File filename, String delimitersPattern) throws IOException {
-        Scanner scanner = new Scanner(filename);
+    //Scanner reads the file from the file name
+    	Scanner scanner = new Scanner(filename);
         scanner.useDelimiter(delimitersPattern);
         while (scanner.hasNext()) {
             Logger.println(scanner.next());

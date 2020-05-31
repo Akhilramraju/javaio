@@ -23,7 +23,7 @@ public class Oval extends Shape {
             double thetaInRadians = (theta * (Math.PI / 180));
             int row = (int) Math.round(rowLength * Math.cos(thetaInRadians)) + rb;
             int col = (int) Math.round(colWidth * Math.sin(thetaInRadians)) + cb;
-            window.setCell(row, col, character);
+            window.setTheCell(row, col, character);
         }
     }
 

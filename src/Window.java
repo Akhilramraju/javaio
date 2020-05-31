@@ -16,11 +16,11 @@ public class Window {
     protected int cols;
     protected ArrayList<Shape> shapes;
     protected char[][] cells;
-    protected char borderDrawingCharacter;
-    protected int firstRowForBorder = 1;
-    protected int firstColumnForBorder = 1;
-    protected int lastRowForBorder;
-    protected int lastColumnForBorder;
+    protected char borderDrawinCharacter;
+    protected int firstRowBorder = 1;
+    protected int firstColumnBorder = 1;
+    protected int lastRowBorder;
+    protected int lastColumnBorder;
 
 
     /*
@@ -34,111 +34,111 @@ public class Window {
         //Make a call to addBorders()
         this.rows = rows;
         this.cols = cols;
-        this.borderDrawingCharacter = border;
+        this.borderDrawinCharacter = border;
         this.shapes = new ArrayList<Shape>();
-        this.lastRowForBorder = rows + 2;
-        this.lastColumnForBorder = cols + 2;
-        this.cells = new char[lastRowForBorder + 1][lastColumnForBorder + 1];
-        addBorders(border);
+        this.lastRowBorder = rows + 2;
+        this.lastColumnBorder = cols + 2;
+        this.cells = new char[lastRowBorder + 1][lastColumnBorder + 1];
+        addBorder(border);
     }
 
-    public static Window readSpecFromFile(String fileName) throws IOException {
-        File file = FileHelper.getFile(fileName);
-        Scanner scanner = new Scanner(file);
-        scanner.useDelimiter("\\."); // take entire token between first dot(.) and next dot(.)
-        //get window
-        Window window = getWindow(scanner);
-        //get shapes
-        while (scanner.hasNext()) {
-            String shapeParams = scanner.next();
-            StringTokenizer stk2 = new StringTokenizer(shapeParams);
-            String shapeName = stk2.nextToken();
-            int shapeRow = Integer.parseInt(stk2.nextToken());
-            int shapeCol = Integer.parseInt(stk2.nextToken());
-            createShapeAndAddToWindow(window, stk2, shapeName, shapeRow, shapeCol);
+    public static Window readSpecFile(String fileNameSelected) throws IOException {
+        File fileGiven = FileHelper.getFile(fileNameSelected);
+        Scanner scan = new Scanner(fileGiven);
+        scan.useDelimiter("\\."); // take entire token between    first dot(.)    and next dot(.)
+
+        Window windowShape = getTheWindow(scan);
+   
+        while (scan.hasNext()) {
+            String shapeParam = scan.next();
+            StringTokenizer stk = new StringTokenizer(shapeParam);
+            String shapeName = stk.nextToken();
+            int shapeRow = Integer.parseInt(stk.nextToken());
+            int shapeCol = Integer.parseInt(stk.nextToken());
+            createShapeAndAddWindow(windowShape, stk, shapeName, shapeRow, shapeCol);
         }
-        return window;
+        return windowShape;
     }
 
-    private static void createShapeAndAddToWindow(Window window, StringTokenizer stk2, String shapeName, int shapeRow, int shapeCol) {
-        Utils.ShapeOption option = ShapeOptionFactory.getShapeOption(shapeName);
-        switch (option) {
+    private static void createShapeAndAddWindow(Window windowShape, StringTokenizer stk, String shapeSelected, int shapeOfRow, int shapeofCol) {
+        Utils.ShapeOption optionSelected = ShapeOptionFactory.getShapeOption(shapeSelected);
+        switch (optionSelected) {
             case LINE:
-                Line line = getLine(stk2, shapeRow, shapeCol);
-                window.addShape(line);
+                Line line = getTheLine(stk, shapeOfRow, shapeofCol);
+                windowShape.addTheShape(line);
                 break;
             case CIRCLE:
-                Circle circle = getCircle(stk2, shapeRow, shapeCol);
-                window.addShape(circle);
+                Circle circle = getTheCircle(stk, shapeOfRow, shapeofCol);
+                windowShape.addTheShape(circle);
                 break;
             case RECTANGLE:
-                Rectangle rectangle = getRectangle(stk2, shapeRow, shapeCol);
-                window.addShape(rectangle);
+                Rectangle rectangle = getTheRectangle(stk, shapeOfRow, shapeofCol);
+                windowShape.addTheShape(rectangle);
                 break;
             case TRIANGLE:
-                Triangle triangle = getTriangle(stk2, shapeRow, shapeCol);
-                window.addShape(triangle);
+                Triangle triangle = getTheTriangle(stk, shapeOfRow, shapeofCol);
+                windowShape.addTheShape(triangle);
                 break;
             case TEXT:
-                Text text = getText(stk2, shapeRow, shapeCol);
-                window.addShape(text);
+                Text text = getTheText(stk, shapeOfRow, shapeofCol);
+                windowShape.addTheShape(text);
                 break;
         }
     }
 
-    private static Text getText(StringTokenizer stk2, int shapeRow, int shapeCol) {
-        String textString = stk2.nextToken("\n");//since string can be indeterminant length
-        int rowInc = Integer.parseInt(stk2.nextToken("\t\n")); //normal token parsing
-        int colInc = Integer.parseInt(stk2.nextToken("\t\n")); //normal token parsing
-        return new Text(shapeRow, shapeCol, textString, rowInc, colInc);
+    private static Text getTheText(StringTokenizer stk, int shapeOfRow, int shapeOfCol) {
+        String textStrng = stk.nextToken("\n");//since string can be indeterminant length
+        int rowIncrement = Integer.parseInt(stk.nextToken("\t\n")); //normal token parsing
+        int colIncrement = Integer.parseInt(stk.nextToken("\t\n")); //normal token parsing
+        return new Text(shapeOfRow, shapeOfCol, textStrng, rowIncrement, colIncrement);
     }
 
-    private static Triangle getTriangle(StringTokenizer stk2, int shapeRow, int shapeCol) {
-        int height = Integer.parseInt(stk2.nextToken());
-        int rowInc = Integer.parseInt(stk2.nextToken());
-        int colInc = Integer.parseInt(stk2.nextToken());
-        char drawingCharacter = stk2.nextToken().charAt(0);
-        return new Triangle(shapeRow, shapeCol, height, rowInc, colInc, drawingCharacter);
+    private static Triangle getTheTriangle(StringTokenizer stk2, int shapeOfRow, int shapeOfCol) {
+        int heightInput = Integer.parseInt(stk2.nextToken());
+        int rowIncrement = Integer.parseInt(stk2.nextToken());
+        int colIncrement = Integer.parseInt(stk2.nextToken());
+        char drawingCharacterInput = stk2.nextToken().charAt(0);
+        return new Triangle(shapeOfRow, shapeOfCol, heightInput, rowIncrement, colIncrement, drawingCharacterInput);
     }
 
-    private static Rectangle getRectangle(StringTokenizer stk2, int shapeRow, int shapeCol) {
-        int height = Integer.parseInt(stk2.nextToken());
-        int width = Integer.parseInt(stk2.nextToken());
-        char displayCharacter = stk2.nextToken().charAt(0);
-        return new Rectangle(shapeRow, shapeCol, height, width, displayCharacter);
+    private static Rectangle getTheRectangle(StringTokenizer stk, int shapeOfRow, int shapeOfCol) {
+        int heightInput = Integer.parseInt(stk.nextToken());
+        int widthInput = Integer.parseInt(stk.nextToken());
+        char displayCharacterInput = stk.nextToken().charAt(0);
+        return new Rectangle(shapeOfRow, shapeOfCol, heightInput, widthInput, displayCharacterInput);
     }
 
-    private static Circle getCircle(StringTokenizer stk2, int shapeRow, int shapeCol) {
-        int radius = Integer.parseInt(stk2.nextToken());
-        char displayCharacter = stk2.nextToken().charAt(0);
-        return new Circle(shapeRow, shapeCol, radius, displayCharacter);
+    private static Circle getTheCircle(StringTokenizer stk, int shapeOfRow, int shapeOfCol) {
+        int radiusInput = Integer.parseInt(stk.nextToken());
+        char displayCharacterInput = stk.nextToken().charAt(0);
+        return new Circle(shapeOfRow, shapeOfCol, radiusInput, displayCharacterInput);
     }
 
-    private static Line getLine(StringTokenizer stk2, int shapeRow, int shapeCol) {
-        int length = Integer.parseInt(stk2.nextToken());
-        int rowInc = Integer.parseInt(stk2.nextToken());
-        int colInc = Integer.parseInt(stk2.nextToken());
-        char drawingCharacter = stk2.nextToken().charAt(0);
-        return new Line(shapeRow, shapeCol, length, rowInc, colInc, drawingCharacter);
+    private static Line getTheLine(StringTokenizer stk, int shapeofRow, int shapeOfCol) {
+        int lengthInput = Integer.parseInt(stk.nextToken());
+        int rowIncrement = Integer.parseInt(stk.nextToken());
+        int colIncrement = Integer.parseInt(stk.nextToken());
+        char drawingCharacterInput = stk.nextToken().charAt(0);
+        return new Line(shapeofRow, shapeOfCol, lengthInput, rowIncrement, colIncrement, drawingCharacterInput);
     }
 
-    private static Window getWindow(Scanner scanner) {
-        String entireWindowParams = scanner.next();
-        StringTokenizer windowParamTokenizer = new StringTokenizer(entireWindowParams);
+    private static Window getTheWindow(Scanner scan) {
+        String entireWindowParam = scan.next();
+        StringTokenizer windowParamsTokenizer = new StringTokenizer(entireWindowParam);
         //window param first
-        int windowRow = Integer.parseInt(windowParamTokenizer.nextToken());
-        int windowColumn = Integer.parseInt(windowParamTokenizer.nextToken());
-        char windowDisplayChar = windowParamTokenizer.nextToken().charAt(0);
+        int windowRowInput = Integer.parseInt(windowParamsTokenizer.nextToken());
+        int windowColumnInput = Integer.parseInt(windowParamsTokenizer.nextToken());
+        char windowDsplayChar = windowParamsTokenizer.nextToken().charAt(0);
 
-        return new Window(windowRow, windowColumn, windowDisplayChar);
+        return new Window(windowRowInput, windowColumnInput, windowDsplayChar);
     }
 
 
-    public void display() {
+    public void showDisplay() {
         //display the content of the array to the screen
-        for (int currentRow = firstRowForBorder; currentRow <= lastRowForBorder; ++currentRow) {
-            for (int currentColumn = firstColumnForBorder; currentColumn <= lastColumnForBorder; ++currentColumn) {
-                Logger.printChar(cells[currentRow][currentColumn]);
+        for (int currentRowInput = firstRowBorder; currentRowInput <= lastRowBorder; ++currentRowInput) {
+            for (int currentColumnInput = firstColumnBorder; currentColumnInput <= lastColumnBorder; ++currentColumnInput) {
+                Logger.printChar(cells[currentRowInput][currentColumnInput]);
                 Logger.addSeparator(); // space between consecutive pixel
             }
             Logger.addNewLine(); // move to next row for printing
@@ -146,124 +146,124 @@ public class Window {
 
     }
 
-    // This method is needed by classes of type Shape for method draw()
-    // It cannot be private
-    // We choose it to be accessible at the package level as the safest
-    // choice open to us
+    // This method is needed by the classes of type Shape for method draw()
+    // It cannot be private method
+    // We choose it to be accessible at package level as the safest
+   
 
-    public void addShape(Shape shape) {
-        //add a shape to the collection
-        this.shapes.add(shape);
-        //call the draw() method of the shape to draw itself on this window
+    public void addTheShape(Shape shapeInput) {
+        //add shape to the collection
+        this.shapes.add(shapeInput);
+        //call  draw() method of the shape to draw itself on the window
         for (Shape item : shapes) {
             item.draw(this);
         }
     }
 
-    void setCell(int row, int col, char ch) {
+    void setTheCell(int rowInput, int colInput, char character) {
         //set the character at cells[row][col] to 'ch'
-        this.cells[row][col] = ch;
+        this.cells[rowInput][colInput] = character;
     }
     //define other methods as needed...
 
-    protected boolean isFirstOrLastRowForBorder(int row) {
-        return row == firstRowForBorder || row == lastRowForBorder;
+    protected boolean isFirstOrLastRowBorder(int rowInput) {
+        return rowInput == firstRowBorder || rowInput == lastRowBorder;
     }
 
-    protected boolean isFirstOrLastColumnForBorder(int column) {
-        return column == firstColumnForBorder || column == lastColumnForBorder;
+    protected boolean isFirstOrLastColumnBorder(int columnInput) {
+        return columnInput == firstColumnBorder || columnInput == lastColumnBorder;
     }
 
-    protected void addBorders(char ch) {
-        //add the border using ch as the character
-        for (int currentRow = firstRowForBorder; currentRow <= lastRowForBorder; ++currentRow) { // outer loop for row
-            for (int currentColumn = firstColumnForBorder; currentColumn <= lastColumnForBorder; ++currentColumn) { //inner loop for column
-                if (isFirstOrLastRowForBorder(currentRow)) {
-                    setCell(currentRow, currentColumn, ch);// set elements for first and last border row
+    protected void addBorder(char character) {
+
+        for (int currentRow = firstRowBorder; currentRow <= lastRowBorder; ++currentRow) { // outer loop for row
+            for (int currentColumn = firstColumnBorder; currentColumn <= lastColumnBorder; ++currentColumn) { //inner loop for column
+                if (isFirstOrLastRowBorder(currentRow)) {
+                    setTheCell(currentRow, currentColumn, character);// set elements for first and last border row
                     continue;
                 }
-                //set elemets for rows between first and last row
-                if (isFirstOrLastColumnForBorder(currentColumn)) {
-                    setCell(currentRow, currentColumn, ch); //if border pixel add char
+                //set elements for rows between first and last row
+                if (isFirstOrLastColumnBorder(currentColumn)) {
+                    setTheCell(currentRow, currentColumn, character); //if the border pixel add char
                 } else {
-                    setCell(currentRow, currentColumn, ' '); // if non-border pixel add empty char
+                    setTheCell(currentRow, currentColumn, ' '); // if the non-border pixel add empty char
                 }
             }
         }
     }
 
-    public void writeSpecToFile(String fileName) throws IOException {
-        File file = FileHelper.createFile(fileName);
-        saveSpecsToFile(file);
+    public void writeSpecFile(String fileNam) throws IOException {
+        File fileInput = FileHelper.createFile(fileNam);
+        saveSpecToFile(fileInput);
     }
 
-    private void saveSpecsToFile(File file) throws IOException {
-        String windowSpecs = buildSpecsInFormat();
-        FileHelper.appendToFile(file, windowSpecs);
+    private void saveSpecToFile(File fileInput) throws IOException {
+        String windowSpec = buildSpecsFormat();
+        FileHelper.appendToFile(fileInput, windowSpec);
         for (Shape item : shapes) {
-            saveShapeSpecsToFile(file, item);
+            saveShapeSpecToFile(fileInput, item);
         }
     }
 
-    private void saveShapeSpecsToFile(File file, Shape shape) throws IOException {
-        String shapeSpecs = shape.getSpecs();
-        FileHelper.appendToFile(file, shapeSpecs);
+    private void saveShapeSpecToFile(File fileInput, Shape shapeInput) throws IOException {
+        String shapeSpecs = shapeInput.getSpecs();
+        FileHelper.appendToFile(fileInput, shapeSpecs);
     }
 
-    private String buildSpecsInFormat() {
-        StringBuilder specs = new StringBuilder();
-        specs.append(this.rows);
-        specs.append("\t").append(this.cols);
-        specs.append("\n").append(this.borderDrawingCharacter);
-        specs.append("\n.");
-        return specs.toString();
+    private String buildSpecsFormat() {
+        StringBuilder specif = new StringBuilder();
+        specif.append(this.rows);
+        specif.append("\t").append(this.cols);
+        specif.append("\n").append(this.borderDrawinCharacter);
+        specif.append("\n.");
+        return specif.toString();
     }
 
-    public void addGrid() {
-        int rowGridNumber = 0;
-        int columnGridNumber = 0;
-        for (int currentRow = firstRowForBorder; currentRow <= lastRowForBorder; ++currentRow) { // outer loop for row
-            for (int currentColumn = firstColumnForBorder; currentColumn <= lastColumnForBorder; ++currentColumn) { //inner loop for column
+    public void addTheGrid() {
+        int rowGridNum = 0;
+        int columnGridNum = 0;
+        for (int currRow = firstRowBorder; currRow <= lastRowBorder; ++currRow) { // outer loop for row
+            for (int currColumn = firstColumnBorder; currColumn <= lastColumnBorder; ++currColumn) { //inner loop for column
 
                 //for first row or last row only
-                if (isFirstOrLastRowForBorder(currentRow)) {
-                    if (isFirstOrLastColumnForBorder(currentColumn)) {
-                        setCell(currentRow, currentColumn, borderDrawingCharacter);
+                if (isFirstOrLastRowBorder(currRow)) {
+                    if (isFirstOrLastColumnBorder(currColumn)) {
+                        setTheCell(currRow, currColumn, borderDrawinCharacter);
                     } else {
-                        rowGridNumber = (rowGridNumber >= 9) ? 0 : ++rowGridNumber;
-                        if (currentRow == lastRowForBorder && currentColumn == firstColumnForBorder)
-                            rowGridNumber = 0; //for last row grid numbers
-                        setCell(currentRow, currentColumn, Character.forDigit(rowGridNumber, 10));// set elements for first or last border row
+                        rowGridNum = (rowGridNum >= 9) ? 0 : ++rowGridNum;
+                        if (currRow == lastRowBorder && currColumn == firstColumnBorder)
+                            rowGridNum = 0; //for last row grid numbers
+                        setTheCell(currRow, currColumn, Character.forDigit(rowGridNum, 10));// set elements for first or last border row
                     }
                     continue;
                 }
 
                 //set elemets for rows between first and last row
-                if (isFirstOrLastColumnForBorder(currentColumn)) {
-                    setCell(currentRow, currentColumn, Character.forDigit(columnGridNumber, 10)); //if border pixel add char
+                if (isFirstOrLastColumnBorder(currColumn)) {
+                    setTheCell(currRow, currColumn, Character.forDigit(columnGridNum, 10)); //if border pixel add char
                 }
             }
-            columnGridNumber = (columnGridNumber >= 9) ? 0 : ++columnGridNumber; //only increment on row change
+            columnGridNum = (columnGridNum >= 9) ? 0 : ++columnGridNum; //only increment on row change
         }
     }
 
 
-    public void refreshImage() {
-        clearWindow();
+    public void refreshTheImage() {
+        clearTheWindow();
         for (Shape item : shapes) { //redraw shapes
             item.draw(this);
         }
     }
 
-    private void clearWindow() {
-        for (int currentRow = firstRowForBorder; currentRow <= lastRowForBorder; ++currentRow) { // outer loop for row
-            for (int currentColumn = firstColumnForBorder; currentColumn <= lastColumnForBorder; ++currentColumn) { //inner loop for column
-                if (isFirstOrLastRowForBorder(currentRow)) {
+    private void clearTheWindow() {
+        for (int currRow = firstRowBorder; currRow <= lastRowBorder; ++currRow) { // outer loop for row
+            for (int currColumn = firstColumnBorder; currColumn <= lastColumnBorder; ++currColumn) { //inner loop for column
+                if (isFirstOrLastRowBorder(currRow)) {
                     continue;
                 }
                 //set elemets for rows between first and last row
-                if (!isFirstOrLastColumnForBorder(currentColumn)) {
-                    setCell(currentRow, currentColumn, ' '); // if non-border pixel add empty char
+                if (!isFirstOrLastColumnBorder(currColumn)) {
+                    setTheCell(currRow, currColumn, ' '); // if non-border pixel add empty char
                 }
             }
         }

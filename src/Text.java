@@ -30,7 +30,7 @@ public class Text extends Shape {
             int col = cb + 1 + i * cInc;
 
             //appropriate call to setCell() method of the Window class...
-            window.setCell(row, col, character);
+            window.setTheCell(row, col, character);
         }
     }
 

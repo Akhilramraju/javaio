@@ -23,7 +23,7 @@ public class Line extends Shape {
         for (int i = 0; i <= length; i++) {
             //determine appropriate row, col values
             //then make a call to setCell() method of the Window class
-            window.setCell(row, col, character);
+            window.setTheCell(row, col, character);
             row += rInc;
             col += cInc;
             //after reading the specification, draw a line in a piece of paper first
@@ -42,35 +42,35 @@ public class Line extends Shape {
             //this is the line which only grows horizontally in East from basepoint
             switch (option) { //detect user move
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowForBorder) {
+                    if ((rb + 2) > window.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + length + 2) > window.lastColumnForBorder) {
+                    if ((cb + length + 2) > window.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnForBorder) {
+                    if (cb < window.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if (rb < window.firstRowForBorder) {
+                    if (rb < window.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if ((cb + length + 2) > window.lastColumnForBorder) {
+                    if ((cb + length + 2) > window.lastColumnBorder) {
                         --length;
                     }
                     break;
@@ -89,35 +89,35 @@ public class Line extends Shape {
             // this is the line which only grows vertically in South direction from basepoint
             switch (option) {
                 case DOWN: {
-                    if ((rb + length + 2) > window.lastRowForBorder) {
+                    if ((rb + length + 2) > window.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnForBorder) {
+                    if ((cb + 2) > window.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnForBorder) {
+                    if (cb < window.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if (rb < window.firstRowForBorder) {
+                    if (rb < window.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if ((rb + length + 2) > window.lastRowForBorder) {
+                    if ((rb + length + 2) > window.lastRowBorder) {
                         --length;
                     }
                     break;
@@ -136,35 +136,35 @@ public class Line extends Shape {
             // this is the line which only grows horizontally in West direction from basepoint
             switch (option) {
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowForBorder) {
+                    if ((rb + 2) > window.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnForBorder) {
+                    if ((cb + 2) > window.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if ((Math.abs(length - cb)) < window.firstColumnForBorder) {
+                    if ((Math.abs(length - cb)) < window.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if (rb < window.firstRowForBorder) {
+                    if (rb < window.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if ((Math.abs(length - cb)) < window.firstColumnForBorder) {
+                    if ((Math.abs(length - cb)) < window.firstColumnBorder) {
                         --length;
                     }
                     break;
@@ -183,35 +183,35 @@ public class Line extends Shape {
             // this is the line which only grows vertically in North direction from basepoint
             switch (option) {
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowForBorder) {
+                    if ((rb + 2) > window.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnForBorder) {
+                    if ((cb + 2) > window.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnForBorder) {
+                    if (cb < window.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if ((Math.abs(length - rb)) < window.firstRowForBorder) {
+                    if ((Math.abs(length - rb)) < window.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if ((Math.abs(length - rb)) < window.firstRowForBorder) {
+                    if ((Math.abs(length - rb)) < window.firstRowBorder) {
                         --length;
                     }
                     break;
@@ -230,35 +230,35 @@ public class Line extends Shape {
             //this is the line which grows horizontally and vertically in South East direction from basepoint
             switch (option) {
                 case DOWN: {
-                    if ((rb + length + 2) > window.lastRowForBorder) {
+                    if ((rb + length + 2) > window.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + length + 2) > window.lastColumnForBorder) {
+                    if ((cb + length + 2) > window.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnForBorder) {
+                    if (cb < window.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if (rb < window.firstRowForBorder) {
+                    if (rb < window.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if (((rb + length + 2) > window.lastRowForBorder) || ((cb + length + 2) > window.lastColumnForBorder)) {
+                    if (((rb + length + 2) > window.lastRowBorder) || ((cb + length + 2) > window.lastColumnBorder)) {
                         --length;
                     }
                     break;
@@ -278,35 +278,35 @@ public class Line extends Shape {
             // this is the line which only grows horizontally and vertically in South West direction from basepoint
             switch (option) {
                 case UP: {
-                    if (rb < window.firstRowForBorder) {
+                    if (rb < window.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case DOWN: {
-                    if ((rb + length + 2) > window.lastRowForBorder) {
+                    if ((rb + length + 2) > window.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if ((Math.abs(length - cb)) < window.firstColumnForBorder) {
+                    if ((Math.abs(length - cb)) < window.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnForBorder) {
+                    if ((cb + 2) > window.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if (((rb + length + 2) > window.lastRowForBorder) || ((Math.abs(length - cb)) < window.firstColumnForBorder)) {
+                    if (((rb + length + 2) > window.lastRowBorder) || ((Math.abs(length - cb)) < window.firstColumnBorder)) {
                         --length;
                     }
                     break;
@@ -325,33 +325,33 @@ public class Line extends Shape {
             // this is the line which only grows horizontally and vertically in North West direction from basepoint
             switch (option) {
                 case UP: {
-                    if ((Math.abs(length - rb)) < window.firstRowForBorder) {
+                    if ((Math.abs(length - rb)) < window.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowForBorder) {
+                    if ((rb + 2) > window.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
                 case LEFT: {
-                    if ((Math.abs(length - cb)) < window.firstColumnForBorder) {
+                    if ((Math.abs(length - cb)) < window.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnForBorder) {
+                    if ((cb + 2) > window.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if (((Math.abs(length - rb)) < window.firstRowForBorder) || ((Math.abs(length - cb)) < window.firstColumnForBorder)) {
+                    if (((Math.abs(length - rb)) < window.firstRowBorder) || ((Math.abs(length - cb)) < window.firstColumnBorder)) {
                         --length;
                     }
                     break;
@@ -370,34 +370,34 @@ public class Line extends Shape {
             // this is the line which only grows horizontally and vertically in North East direction from basepoint
             switch (option) {
                 case UP: {
-                    if ((Math.abs(length - rb)) < window.firstRowForBorder) {
+                    if ((Math.abs(length - rb)) < window.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowForBorder) {
+                    if ((rb + 2) > window.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + length + 2) > window.lastColumnForBorder) {
+                    if ((cb + length + 2) > window.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnForBorder) {
+                    if (cb < window.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if (((Math.abs(length - rb)) < window.firstRowForBorder) || ((cb + length + 2) > window.lastColumnForBorder)) {
+                    if (((Math.abs(length - rb)) < window.firstRowBorder) || ((cb + length + 2) > window.lastColumnBorder)) {
                         --length;
                     }
                     break;

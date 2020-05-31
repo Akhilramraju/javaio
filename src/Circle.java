@@ -30,7 +30,7 @@ public class Circle extends Shape {
             int col = cb + 1 + cdif;
             //now row and col forms a point on the perimeter of the circle
             //appropriate call to setCell() method of the Window class...
-            window.setCell(row, col, character);
+            window.setTheCell(row, col, character);
         }
     }
 

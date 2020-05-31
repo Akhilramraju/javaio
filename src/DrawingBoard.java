@@ -5,199 +5,201 @@ public class DrawingBoard {
 
     private static int selectItemPosition = -1;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         char menuOptionKeyword;
         int response = 100; //some random init value
 
         Shape selectedShape = null;
         Scanner scanner = new Scanner(System.in);
-        String userInput = getFileInputFromUser(scanner);
-        Window window = getWindow(scanner, userInput);
+        String userInput = getFileInput(scanner);
+        Window window = getWindowShape(scanner, userInput);
         if (window == null) {
             Logger.println("Oops something went wrong while reading file, closing Program");
             return;
         }
-        displayWindowWithMenuOption(window);
+        displayWindowWithMenu(window);
         //display window either new or from file
 
         do {
-            menuOptionKeyword = getUserInputForMenuOption(scanner);
-            response = onMenuOptionEntered(menuOptionKeyword, scanner, window, selectedShape);
+            menuOptionKeyword = getUserInputForMenu(scanner);
+            response = onMenuOptionEnter(menuOptionKeyword, scanner, window, selectedShape);
         } while (response != Utils.QUIT_OPTION);
         Logger.println("Thank You!");
     }
 
-    private static void displayWindowWithMenuOption(Window window) {
+    private static void displayWindowWithMenu(Window windowShape) {
         Logger.addNewLine();
-        window.addGrid();
-        window.display();
+        windowShape.addTheGrid();
+        windowShape.showDisplay();
         Logger.addNewLine();
-        displayMenuOption();
+        displayMenu();
     }
 
-    private static Window getWindow(Scanner scanner, String userInput) {
+    private static Window getWindowShape(Scanner scan, String input)  throws Exception {
         Window window = null;
-        if (checkIfFileInputIsNew(userInput)) {
-            window = createNewWindow(scanner);
+        if (checkIsFileInputIsNew(input)) {
+            window = createNewWindowShape(scan);
         } else {
-            try {
-                window = Window.readSpecFromFile(userInput);
-            } catch (IOException e) {
+            
+                window = Window.readSpecFile(input);
+        
                 // some thing went wrong while reading file
-            }
+            
         }
         return window;
     }
 
     private static String getNewWindowParams(Scanner scanner) {
-        Logger.println("Enter number of rows, number of columns and character (separated by space):");
+    	
+    	// user needxs to enter number of rows and columns and required char
+        Logger.println("Enter number of rows required, number of columns required and character (separated by space):");
         return scanner.nextLine();
     }
 
-    private static String getFileInputFromUser(Scanner scanner) {
-        Logger.println("Enter the window file name (or NEW):");
-        return scanner.nextLine();
+    private static String getFileInput(Scanner scan) {
+        Logger.println("Please enter the window file name (or 'NEW'):");
+        return scan.nextLine();
     }
 
-    private static boolean checkIfFileInputIsNew(String userFileInput) {
-        return userFileInput.equals("NEW");
+    private static boolean checkIsFileInputIsNew(String userFile) {
+        return userFile.equals("NEW");
     }
 
-    private static Window createNewWindow(Scanner scanner) {
-        String userWidowParamInput = getNewWindowParams(scanner);
-        String[] windowParams = userWidowParamInput.split(" ");
-        int windowRows = Integer.parseInt(windowParams[0]);
-        int windowCols = Integer.parseInt(windowParams[1]);
-        char windowChar = windowParams[2].charAt(0);
-        return new Window(windowRows, windowCols, windowChar);
+    private static Window createNewWindowShape(Scanner scan) {
+        String userWidowParamsInput = getNewWindowParams(scan);
+        String[] windowParam = userWidowParamsInput.split(" ");
+        int windowRow = Integer.parseInt(windowParam[0]);
+        int windowCol = Integer.parseInt(windowParam[1]);
+        char windowCharacter = windowParam[2].charAt(0);
+        return new Window(windowRow, windowCol, windowCharacter);
     }
 
-    private static void displayMenuOption() {
-        Logger.println("Add Erase Select Write Quit");
-        Logger.println("Up Down Left Right + -");
+    private static void displayMenu() {
+        Logger.println("Add Erase Select Write Quit :");
+        Logger.println("Up Down Left Right + - (type a)");
     }
 
-    private static char getUserInputForMenuOption(Scanner scanner) {
-        return scanner.nextLine().charAt(0);
+    private static char getUserInputForMenu(Scanner scan) {
+        return scan.nextLine().charAt(0);
     }
 
-    private static int onMenuOptionEntered(char menuOptionKeyword, Scanner scanner, Window window, Shape selectedShape) {
-        Utils.MenuOption option = MenuOptionFactory.getMenuOption(menuOptionKeyword);
+    private static int onMenuOptionEnter(char menuOptionsKeyword, Scanner scan, Window windowShape, Shape selectdShape) {
+        Utils.MenuOption option = MenuOptionFactory.getMenuOption(menuOptionsKeyword);
         if (option == null) {
             Logger.println("Incorrect option provided, please provide correct input");
             return -1; // user entered some incorrect option from menu
         }
         switch (option) {
             case ADD:
-                onAddOptionSelected(scanner, window);
+                onAddSelected(scan, windowShape);
                 break;
             case ERASE:
-                onEraseOptionSelected(scanner, window);
+                onEraseOptionsSelected(scan, windowShape);
                 break;
             case SELECT:
-                onSelectOptionSelected(scanner, window, selectedShape);
+                onSelectOptionsSelected(scan, windowShape, selectdShape);
                 break;
             case WRITE:
-                onWriteOptionSelected(scanner, window);
+                onWriteOptionsSelected(scan, windowShape);
                 break;
             case QUIT:
                 return Utils.QUIT_OPTION; //user has asked to quit
             case UP:
-                onShapeModified(scanner, window, Utils.MenuOption.UP);
+                onShapesModified(scan, windowShape, Utils.MenuOption.UP);
                 break;
             case DOWN:
-                onShapeModified(scanner, window, Utils.MenuOption.DOWN);
+                onShapesModified(scan, windowShape, Utils.MenuOption.DOWN);
                 break;
             case LEFT:
-                onShapeModified(scanner, window, Utils.MenuOption.LEFT);
+                onShapesModified(scan, windowShape, Utils.MenuOption.LEFT);
                 break;
             case RIGHT:
-                onShapeModified(scanner, window, Utils.MenuOption.RIGHT);
+                onShapesModified(scan, windowShape, Utils.MenuOption.RIGHT);
                 break;
             case DECREMENT_SIZE:
-                onShapeModified(scanner, window, Utils.MenuOption.DECREMENT_SIZE);
+                onShapesModified(scan, windowShape, Utils.MenuOption.DECREMENT_SIZE);
                 break;
             case INCREMENT_SIZE:
-                onShapeModified(scanner, window, Utils.MenuOption.INCREMENT_SIZE);
+                onShapesModified(scan, windowShape, Utils.MenuOption.INCREMENT_SIZE);
                 break;
         }
         return Utils.CORRECT_OPTION; // correct menu option apart from exit
     }
 
-    private static void onWriteOptionSelected(Scanner scanner, Window window) {
+    private static void onWriteOptionsSelected(Scanner scan, Window windowShape) {
         Logger.println("File name: ");
-        String fileName = scanner.nextLine();
+        String fileName = scan.nextLine();
         try {
-            window.writeSpecToFile(fileName);
+            windowShape.writeSpecFile(fileName);
         } catch (IOException e) {
             Logger.println("Something went wrong while creating the file");
         }
-        displayWindowWithMenuOption(window);
+        displayWindowWithMenu(windowShape);
     }
 
     //todo : I still override the border when shapes are moved or modified, please fixme , I love my borders.
-    private static void onShapeModified(Scanner scanner, Window window, Utils.MenuOption option) {
-        if (selectItemPosition < window.shapes.size() && selectItemPosition >= 0) {
-            Shape shape = window.shapes.get(selectItemPosition);
-            if (shape instanceof Line) {
-                Line line = (Line) shape;
-                ShapeModificationFactory.performLineOperation(option, line, window);
-                window.shapes.remove(selectItemPosition);
-                window.shapes.add(selectItemPosition, line);
-                window.refreshImage();
-                displayWindowWithMenuOption(window);
+    private static void onShapesModified(Scanner scan, Window windowShape, Utils.MenuOption options) {
+        if (selectItemPosition < windowShape.shapes.size() && selectItemPosition >= 0) {
+            Shape shapeSelected = windowShape.shapes.get(selectItemPosition);
+            if (shapeSelected instanceof Line) {
+                Line line = (Line) shapeSelected;
+                ShapeModificationFactory.performLineOperation(options, line, windowShape);
+                windowShape.shapes.remove(selectItemPosition);
+                windowShape.shapes.add(selectItemPosition, line);
+                windowShape.refreshTheImage();
+                displayWindowWithMenu(windowShape);
             }
         }
     }
 
-    private static void onSelectOptionSelected(Scanner scanner, Window window, Shape selectedShape) {
-        int windowShapeSize = window.shapes.size();
-        printShapesWithSpecs(window, windowShapeSize);
+    private static void onSelectOptionsSelected(Scanner scan, Window windowShape, Shape selectedOnShape) {
+        int windowSize = windowShape.shapes.size();
+        printShapesWithSpec(windowShape, windowSize);
         try {
-            selectItemPosition = Integer.parseInt(scanner.nextLine());
+            selectItemPosition = Integer.parseInt(scan.nextLine());
         } catch (Exception e) {
         }
-        if (!(selectItemPosition < windowShapeSize && selectItemPosition >= 0)) {
+        if (!(selectItemPosition < windowSize && selectItemPosition >= 0)) {
             Logger.println("Please enter correct option");
         }
-        displayWindowWithMenuOption(window);
+        displayWindowWithMenu(windowShape);
     }
 
-    private static void onEraseOptionSelected(Scanner scanner, Window window) {
-        int windowShapeSize = window.shapes.size();
-        int erasedItemPosition = -1;
-        printShapesWithSpecs(window, windowShapeSize);
+    private static void onEraseOptionsSelected(Scanner scan, Window windowShape) {
+        int windowSize = windowShape.shapes.size();
+        int eraseItemPosition = -1;
+        printShapesWithSpec(windowShape, windowSize);
         try {
-            erasedItemPosition = Integer.parseInt(scanner.nextLine());
+            eraseItemPosition = Integer.parseInt(scan.nextLine());
         } catch (Exception e) {
         }
-        if (erasedItemPosition < windowShapeSize && erasedItemPosition >= 0) {
-            window.shapes.remove(erasedItemPosition);
-            window.refreshImage();
+        if (eraseItemPosition < windowSize && eraseItemPosition >= 0) {
+            windowShape.shapes.remove(eraseItemPosition);
+            windowShape.refreshTheImage();
         } else {
             Logger.println("Please enter correct option");
         }
-        displayWindowWithMenuOption(window);
+        displayWindowWithMenu(windowShape);
     }
 
-    private static void printShapesWithSpecs(Window window, int windowShapeSize) {
-        for (int i = 0; i < windowShapeSize; ++i) {
+    private static void printShapesWithSpec(Window windowShape, int windowSize) {
+        for (int i = 0; i < windowSize; ++i) {
             Logger.print(i + ":  ");
-            Logger.println(window.shapes.get(i).toString());
+            Logger.println(windowShape.shapes.get(i).toString());
         }
     }
 
-    private static void onAddOptionSelected(Scanner scanner, Window window) {
+    private static void onAddSelected(Scanner scan, Window windowShape) {
         Logger.println("line rowBase colBase length rowIncrement colIncrement character");
-        String[] lineParams = scanner.nextLine().split(" ");
-        int baseRow = Integer.parseInt(lineParams[1]);
-        int baseCol = Integer.parseInt(lineParams[2]);
-        int length = Integer.parseInt(lineParams[3]);
-        int rowIncrement = Integer.parseInt(lineParams[4]);
-        int colIncrement = Integer.parseInt(lineParams[5]);
-        char drawingChar = lineParams[6].charAt(0);
+        String[] lineParam = scan.nextLine().split(" ");
+        int baseRow = Integer.parseInt(lineParam[1]);
+        int baseCol = Integer.parseInt(lineParam[2]);
+        int length = Integer.parseInt(lineParam[3]);
+        int rowIncrement = Integer.parseInt(lineParam[4]);
+        int colIncrement = Integer.parseInt(lineParam[5]);
+        char drawingChar = lineParam[6].charAt(0);
         Line line = new Line(baseRow, baseCol, length, rowIncrement, colIncrement, drawingChar);
-        window.addShape(line);
-        displayWindowWithMenuOption(window);
+        windowShape.addTheShape(line);
+        displayWindowWithMenu(windowShape);
     }
 }

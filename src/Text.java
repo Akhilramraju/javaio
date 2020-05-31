@@ -20,7 +20,7 @@ public class Text extends Shape {
         this.cInc = colIncrement;
     }
 
-    public void draw(Window window) throws Exception {
+    public void draws(Window window) throws Exception {
         //assuming row position of the base point of this text is 'rb'
         //assuming column position of the base point of this text is 'cb'
 

@@ -19,7 +19,7 @@ public class Rectangle extends Shape {
         this.character = drawingCharacter;
     }
 
-    public void draw(Window window) throws Exception {
+    public void draws(Window window) throws Exception {
         //treat the rectangle as four lines
 
         //Line line1 = new Line(/*appropriate parameters goes here*/);
@@ -30,10 +30,10 @@ public class Rectangle extends Shape {
         //similarly line2, line3, line4
 
         //now use the draw method in the Line class to draw the rectangle
-        line1.draw(window);
-        line2.draw(window);
-        line3.draw(window);
-        line4.draw(window);
+        line1.draws(window);
+        line2.draws(window);
+        line3.draws(window);
+        line4.draws(window);
     }
 
     @Override

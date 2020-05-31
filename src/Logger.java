@@ -3,23 +3,23 @@ public class Logger {
     private static final char EMPTY_CHAR = ' '; // empty char is separator between subsequent characters
     private static final char NEW_LINE = '\n';
 
-    public static void printChar(char value) {
-        System.out.print(value);
+    public static void printChar(char valueInput) {
+        System.out.print(valueInput);
     }
 
-    public static void addSeparator() {
+    public static void addsSeparator() {
         System.out.print(EMPTY_CHAR);
     }
 
-    public static void addNewLine() {
+    public static void addsNewLine() {
         System.out.print(NEW_LINE);
     }
 
-    public static void println(String value) {
-        System.out.println(value);
+    public static void println(String valueInput) {
+        System.out.println(valueInput);
     }
 
-    public static void print(String value) {
-        System.out.print(value);
+    public static void print(String valueInput) {
+        System.out.print(valueInput);
     }
 }

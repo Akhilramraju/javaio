@@ -17,7 +17,7 @@ public class Oval extends Shape {
     //Using  parametric equation of ellipse to draw oval
     //angle(theta) is increased from 0 to 360 with step of 12
     @Override
-    public void draw(Window window) throws Exception {
+    public void draws(Window window) throws Exception {
         for (int theta = 0; theta < 360; theta += 12) {
             //convert theta to radians
             double thetaInRadians = (theta * (Math.PI / 180));

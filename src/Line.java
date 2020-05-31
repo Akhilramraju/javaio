@@ -17,7 +17,7 @@ public class Line extends Shape {
         this.character = drawingCharacter;
     }
 
-    public void draw(Window window) throws Exception {
+    public void draws(Window window) throws Exception {
         int row = rb + 1;
         int col = cb + 1;
         for (int i = 0; i <= length; i++) {
@@ -32,45 +32,45 @@ public class Line extends Shape {
     }
 
     //define other methods...
-    protected void decrementRowBase(Window window) {
+    protected void decrementsRowBase(Window windowShape) {
         --this.rb;
-        isOverlappingWindow(window, Util.MenuOption.UP);
+        isOverlappingTheWindow(windowShape, Util.MenuOption.UP);
     }
 
-    void isOverlappingWindow(Window window, Util.MenuOption option) {
+    void isOverlappingTheWindow(Window windowShape, Util.MenuOption option) {
         if (rInc == 0 && cInc == 1) { //detect type of line
             //this is the line which only grows horizontally in East from basepoint
             switch (option) { //detect user move
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowBorder) {
+                    if ((rb + 2) > windowShape.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + length + 2) > window.lastColumnBorder) {
+                    if ((cb + length + 2) > windowShape.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnBorder) {
+                    if (cb < windowShape.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if (rb < window.firstRowBorder) {
+                    if (rb < windowShape.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if ((cb + length + 2) > window.lastColumnBorder) {
+                    if ((cb + length + 2) > windowShape.lastColumnBorder) {
                         --length;
                     }
                     break;
@@ -89,35 +89,35 @@ public class Line extends Shape {
             // this is the line which only grows vertically in South direction from basepoint
             switch (option) {
                 case DOWN: {
-                    if ((rb + length + 2) > window.lastRowBorder) {
+                    if ((rb + length + 2) > windowShape.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnBorder) {
+                    if ((cb + 2) > windowShape.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnBorder) {
+                    if (cb < windowShape.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if (rb < window.firstRowBorder) {
+                    if (rb < windowShape.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if ((rb + length + 2) > window.lastRowBorder) {
+                    if ((rb + length + 2) > windowShape.lastRowBorder) {
                         --length;
                     }
                     break;
@@ -136,35 +136,35 @@ public class Line extends Shape {
             // this is the line which only grows horizontally in West direction from basepoint
             switch (option) {
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowBorder) {
+                    if ((rb + 2) > windowShape.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnBorder) {
+                    if ((cb + 2) > windowShape.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if ((Math.abs(length - cb)) < window.firstColumnBorder) {
+                    if ((Math.abs(length - cb)) < windowShape.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if (rb < window.firstRowBorder) {
+                    if (rb < windowShape.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if ((Math.abs(length - cb)) < window.firstColumnBorder) {
+                    if ((Math.abs(length - cb)) < windowShape.firstColumnBorder) {
                         --length;
                     }
                     break;
@@ -183,35 +183,35 @@ public class Line extends Shape {
             // this is the line which only grows vertically in North direction from basepoint
             switch (option) {
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowBorder) {
+                    if ((rb + 2) > windowShape.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnBorder) {
+                    if ((cb + 2) > windowShape.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnBorder) {
+                    if (cb < windowShape.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if ((Math.abs(length - rb)) < window.firstRowBorder) {
+                    if ((Math.abs(length - rb)) < windowShape.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if ((Math.abs(length - rb)) < window.firstRowBorder) {
+                    if ((Math.abs(length - rb)) < windowShape.firstRowBorder) {
                         --length;
                     }
                     break;
@@ -230,35 +230,35 @@ public class Line extends Shape {
             //this is the line which grows horizontally and vertically in South East direction from basepoint
             switch (option) {
                 case DOWN: {
-                    if ((rb + length + 2) > window.lastRowBorder) {
+                    if ((rb + length + 2) > windowShape.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + length + 2) > window.lastColumnBorder) {
+                    if ((cb + length + 2) > windowShape.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnBorder) {
+                    if (cb < windowShape.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case UP: {
-                    if (rb < window.firstRowBorder) {
+                    if (rb < windowShape.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if (((rb + length + 2) > window.lastRowBorder) || ((cb + length + 2) > window.lastColumnBorder)) {
+                    if (((rb + length + 2) > windowShape.lastRowBorder) || ((cb + length + 2) > windowShape.lastColumnBorder)) {
                         --length;
                     }
                     break;
@@ -278,35 +278,35 @@ public class Line extends Shape {
             // this is the line which only grows horizontally and vertically in South West direction from basepoint
             switch (option) {
                 case UP: {
-                    if (rb < window.firstRowBorder) {
+                    if (rb < windowShape.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
 
                 case DOWN: {
-                    if ((rb + length + 2) > window.lastRowBorder) {
+                    if ((rb + length + 2) > windowShape.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if ((Math.abs(length - cb)) < window.firstColumnBorder) {
+                    if ((Math.abs(length - cb)) < windowShape.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnBorder) {
+                    if ((cb + 2) > windowShape.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if (((rb + length + 2) > window.lastRowBorder) || ((Math.abs(length - cb)) < window.firstColumnBorder)) {
+                    if (((rb + length + 2) > windowShape.lastRowBorder) || ((Math.abs(length - cb)) < windowShape.firstColumnBorder)) {
                         --length;
                     }
                     break;
@@ -325,33 +325,33 @@ public class Line extends Shape {
             // this is the line which only grows horizontally and vertically in North West direction from basepoint
             switch (option) {
                 case UP: {
-                    if ((Math.abs(length - rb)) < window.firstRowBorder) {
+                    if ((Math.abs(length - rb)) < windowShape.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowBorder) {
+                    if ((rb + 2) > windowShape.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
                 case LEFT: {
-                    if ((Math.abs(length - cb)) < window.firstColumnBorder) {
+                    if ((Math.abs(length - cb)) < windowShape.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + 2) > window.lastColumnBorder) {
+                    if ((cb + 2) > windowShape.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if (((Math.abs(length - rb)) < window.firstRowBorder) || ((Math.abs(length - cb)) < window.firstColumnBorder)) {
+                    if (((Math.abs(length - rb)) < windowShape.firstRowBorder) || ((Math.abs(length - cb)) < windowShape.firstColumnBorder)) {
                         --length;
                     }
                     break;
@@ -370,34 +370,34 @@ public class Line extends Shape {
             // this is the line which only grows horizontally and vertically in North East direction from basepoint
             switch (option) {
                 case UP: {
-                    if ((Math.abs(length - rb)) < window.firstRowBorder) {
+                    if ((Math.abs(length - rb)) < windowShape.firstRowBorder) {
                         ++rb;
                     }
                     break;
                 }
                 case DOWN: {
-                    if ((rb + 2) > window.lastRowBorder) {
+                    if ((rb + 2) > windowShape.lastRowBorder) {
                         --rb;
                     }
                     break;
                 }
 
                 case RIGHT: {
-                    if ((cb + length + 2) > window.lastColumnBorder) {
+                    if ((cb + length + 2) > windowShape.lastColumnBorder) {
                         --cb;
                     }
                     break;
                 }
 
                 case LEFT: {
-                    if (cb < window.firstColumnBorder) {
+                    if (cb < windowShape.firstColumnBorder) {
                         ++cb;
                     }
                     break;
                 }
 
                 case INCREMENT_SIZE: {
-                    if (((Math.abs(length - rb)) < window.firstRowBorder) || ((cb + length + 2) > window.lastColumnBorder)) {
+                    if (((Math.abs(length - rb)) < windowShape.firstRowBorder) || ((cb + length + 2) > windowShape.lastColumnBorder)) {
                         --length;
                     }
                     break;
@@ -413,29 +413,29 @@ public class Line extends Shape {
         }
     }
 
-    protected void incrementRowBase(Window window) {
+    protected void incrementsRowBase(Window windowShape) {
         ++this.rb;
-        isOverlappingWindow(window, Util.MenuOption.DOWN);
+        isOverlappingTheWindow(windowShape, Util.MenuOption.DOWN);
     }
 
-    protected void incrementColBase(Window window) {
+    protected void incrementsColBase(Window windowShape) {
         ++this.cb;
-        isOverlappingWindow(window, Util.MenuOption.RIGHT);
+        isOverlappingTheWindow(windowShape, Util.MenuOption.RIGHT);
     }
 
-    protected void decrementColBase(Window window) {
+    protected void decrementsColBase(Window windowShape) {
         --this.cb;
-        isOverlappingWindow(window, Util.MenuOption.LEFT);
+        isOverlappingTheWindow(windowShape, Util.MenuOption.LEFT);
     }
 
-    protected void increaseSize(Window window) {
+    protected void increasesSize(Window windowShape) {
         ++this.length;
-        isOverlappingWindow(window, Util.MenuOption.INCREMENT_SIZE);
+        isOverlappingTheWindow(windowShape, Util.MenuOption.INCREMENT_SIZE);
     }
 
-    protected void decreaseSize(Window window) {
+    protected void decreasesSize(Window windowShape) {
         --this.length;
-        isOverlappingWindow(window, Util.MenuOption.DECREMENT_SIZE);
+        isOverlappingTheWindow(windowShape, Util.MenuOption.DECREMENT_SIZE);
     }
 
     @Override

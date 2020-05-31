@@ -1,24 +1,24 @@
 public class ShapeModificationFactory {
 
-    public static void performLineOperation(Util.MenuOption menuOption, Line line, Window window) {
-        switch (menuOption) {
+    public static void performLineOperation(Util.MenuOption menusOption, Line line, Window windowShape) {
+        switch (menusOption) {
             case INCREMENT_SIZE:
-                line.increaseSize(window);
+                line.increasesSize(windowShape);
                 break;
             case DECREMENT_SIZE:
-                line.decreaseSize(window);
+                line.decreasesSize(windowShape);
                 break;
             case UP:
-                line.decrementRowBase(window);
+                line.decrementsRowBase(windowShape);
                 break;
             case DOWN:
-                line.incrementRowBase(window);
+                line.incrementsRowBase(windowShape);
                 break;
             case RIGHT:
-                line.incrementColBase(window);
+                line.incrementsColBase(windowShape);
                 break;
             case LEFT:
-                line.decrementColBase(window);
+                line.decrementsColBase(windowShape);
                 break;
         }
     }

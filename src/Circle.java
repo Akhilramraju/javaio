@@ -15,7 +15,7 @@ public class Circle extends Shape {
         this.character = drawingCharacter;
     }
 
-    public void draw(Window window) throws Exception {
+    public void draws(Window window) throws Exception {
         //assuming row position of the center of this circle is 'rb'
         //assuming column position of the center of this circle is 'cb'
 

@@ -20,7 +20,7 @@ public class Triangle extends Shape {
         this.cb = colBase;
     }
 
-    public void draw(Window window) throws Exception {
+    public void draws(Window window) throws Exception {
         //assuming row position of the base point of this triangle is 'rb'
         //assuming column position of the base point of this triangle is 'cb'
         //assuming the drawing character is 'character'
@@ -32,9 +32,9 @@ public class Triangle extends Shape {
             Line line2 = new Line(rb, cb, height, 1, cInc, character);
             Line line3 = new Line(rb - height, cb + cInc * height, 2 * height,
                     1, 0, character);
-            line1.draw(window);
-            line2.draw(window);
-            line3.draw(window);
+            line1.draws(window);
+            line2.draws(window);
+            line3.draws(window);
             //now use the draw method in the Line class to draw the triangle
         } else if (cInc == 0)//when the height vector goes up or down from the base point
         {
@@ -43,15 +43,15 @@ public class Triangle extends Shape {
             Line line3 = new Line(rb + rInc * height, cb - height,
                     2 * height, 0, 1, character);
             //now use the draw method in the Line class to draw the triangle
-            line1.draw(window);
-            line2.draw(window);
-            line3.draw(window);
+            line1.draws(window);
+            line2.draws(window);
+            line3.draws(window);
         }
     }
 
     @Override
     public String toString() {
-        return TAG_CLASSNAME + " (" + rb + ',' + cb + ") " + '(' + rInc + ',' + cInc + ") " + '(' + character + ')';
+        return TAG_CLASSNAME + " (" + rb  + ',' + cb + ") " + '(' +  rInc + ','  + cInc + ") " + '(' +  character + ')';
     }
 
     @Override

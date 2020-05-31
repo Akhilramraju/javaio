@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class FileHelper {
 
-    public static File createFile(String fileName) throws IOException {
-        File file = new File(fileName);
+    public static File createsFile(String filesName) throws IOException {
+        File file = new File(filesName);
         try {
             if (file.exists()) {
                 //file already exist
@@ -21,22 +21,22 @@ public class FileHelper {
         }
     }
 
-    public static void appendToFile(File file, String content) throws IOException {
-        PrintWriter printWriter = new PrintWriter(new FileWriter(file.getName(), true));
-        printWriter.print(content);
-        printWriter.flush();
-        printWriter.close();
+    public static void appendsToFile(File filename, String contents) throws IOException {
+        PrintWriter printsWriter = new PrintWriter(new FileWriter(filename.getName(), true));
+        printsWriter.print(contents);
+        printsWriter.flush();
+        printsWriter.close();
     }
 
-    public static void readFromFile(File file, String delimiterPattern) throws IOException {
-        Scanner scanner = new Scanner(file);
-        scanner.useDelimiter(delimiterPattern);
+    public static void readsFromFile(File filename, String delimitersPattern) throws IOException {
+        Scanner scanner = new Scanner(filename);
+        scanner.useDelimiter(delimitersPattern);
         while (scanner.hasNext()) {
             Logger.println(scanner.next());
         }
     }
 
-    public static File getFile(String fileName) throws FileNotFoundException {
+    public static File getsFile(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (file.exists()) return file;
         else throw new FileNotFoundException();

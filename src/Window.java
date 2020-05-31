@@ -43,7 +43,7 @@ public class Window {
     }
 
     public static Window readSpecFile(String fileNameSelected) throws Exception {
-        File fileGiven = FileHelper.getFile(fileNameSelected);
+        File fileGiven = FileHelper.getsFile(fileNameSelected);
         Scanner scan = new Scanner(fileGiven);
         scan.useDelimiter("\\."); // take entire token between    first dot(.)    and next dot(.)
 
@@ -139,9 +139,9 @@ public class Window {
         for (int currentRowInput = firstRowBorder; currentRowInput <= lastRowBorder; ++currentRowInput) {
             for (int currentColumnInput = firstColumnBorder; currentColumnInput <= lastColumnBorder; ++currentColumnInput) {
                 Logger.printChar(cells[currentRowInput][currentColumnInput]);
-                Logger.addSeparator(); // space between consecutive pixel
+                Logger.addsSeparator(); // space between consecutive pixel
             }
-            Logger.addNewLine(); // move to next row for printing
+            Logger.addsNewLine(); // move to next row for printing
         }
 
     }
@@ -156,7 +156,7 @@ public class Window {
         this.shapes.add(shapeInput);
         //call  draw() method of the shape to draw itself on the window
         for (Shape item : shapes) {
-            item.draw(this);
+            item.draws(this);
         }
     }
 
@@ -193,13 +193,13 @@ public class Window {
     }
 
     public void writeSpecFile(String fileNam) throws IOException {
-        File fileInput = FileHelper.createFile(fileNam);
+        File fileInput = FileHelper.createsFile(fileNam);
         saveSpecToFile(fileInput);
     }
 
     private void saveSpecToFile(File fileInput) throws IOException {
         String windowSpec = buildSpecsFormat();
-        FileHelper.appendToFile(fileInput, windowSpec);
+        FileHelper.appendsToFile(fileInput, windowSpec);
         for (Shape item : shapes) {
             saveShapeSpecToFile(fileInput, item);
         }
@@ -207,7 +207,7 @@ public class Window {
 
     private void saveShapeSpecToFile(File fileInput, Shape shapeInput) throws IOException {
         String shapeSpecs = shapeInput.getSpecs();
-        FileHelper.appendToFile(fileInput, shapeSpecs);
+        FileHelper.appendsToFile(fileInput, shapeSpecs);
     }
 
     private String buildSpecsFormat() {
@@ -251,7 +251,7 @@ public class Window {
     public void refreshTheImage() throws Exception {
         clearTheWindow();
         for (Shape item : shapes) { //redraw shapes
-            item.draw(this);
+            item.draws(this);
         }
     }
 

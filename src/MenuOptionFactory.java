@@ -1,8 +1,8 @@
 public class MenuOptionFactory {
 
-    public static Util.MenuOption getMenuOption(char menuKeyword) {
+    public static Util.MenuOption getMenusOption(char menuKey) {
         Util.MenuOption option = null;
-        switch (menuKeyword) {
+        switch (menuKey) {
             case 'a':
                 option = Util.MenuOption.ADD;
                 break;

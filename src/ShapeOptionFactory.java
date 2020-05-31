@@ -1,6 +1,6 @@
 public class ShapeOptionFactory {
-    public static Util.ShapeOption getShapeOption(String shapeName) {
-        switch (shapeName) {
+    public static Util.ShapeOption getShapeOption(String shapesName) {
+        switch (shapesName) {
             case "line":
                 return Util.ShapeOption.LINE;
             case "circle":

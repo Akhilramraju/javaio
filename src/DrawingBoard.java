@@ -28,10 +28,10 @@ public class DrawingBoard {
     }
 
     private static void displayWindowWithMenu(Window windowShape) throws Exception {
-        Logger.addNewLine();
+        Logger.addsNewLine();
         windowShape.addTheGrid();
         windowShape.showDisplay();
-        Logger.addNewLine();
+        Logger.addsNewLine();
         displayMenu();
     }
 
@@ -84,7 +84,7 @@ public class DrawingBoard {
     }
 
     private static int onMenuOptionEnter(char menuOptionsKeyword, Scanner scan, Window windowShape, Shape selectdShape) throws Exception {
-        Util.MenuOption option = MenuOptionFactory.getMenuOption(menuOptionsKeyword);
+        Util.MenuOption option = MenuOptionFactory.getMenusOption(menuOptionsKeyword);
         if (option == null) {
             Logger.println("Incorrect option provided, please provide correct input");
             return -1; // user entered some incorrect option from menu

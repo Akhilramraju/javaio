@@ -1,18 +1,18 @@
 public class ShapeOptionFactory {
-    public static Utils.ShapeOption getShapeOption(String shapeName) {
+    public static Util.ShapeOption getShapeOption(String shapeName) {
         switch (shapeName) {
             case "line":
-                return Utils.ShapeOption.LINE;
+                return Util.ShapeOption.LINE;
             case "circle":
-                return Utils.ShapeOption.CIRCLE;
+                return Util.ShapeOption.CIRCLE;
             case "rectangle":
-                return Utils.ShapeOption.RECTANGLE;
+                return Util.ShapeOption.RECTANGLE;
             case "triangle":
-                return Utils.ShapeOption.TRIANGLE;
+                return Util.ShapeOption.TRIANGLE;
             case "text":
-                return Utils.ShapeOption.TEXT;
+                return Util.ShapeOption.TEXT;
             case "oval":
-                return Utils.ShapeOption.OVAL;
+                return Util.ShapeOption.OVAL;
             default:
                 return null;
         }

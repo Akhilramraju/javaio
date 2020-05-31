@@ -1,6 +1,6 @@
 public class ShapeModificationFactory {
 
-    public static void performLineOperation(Utils.MenuOption menuOption, Line line, Window window) {
+    public static void performLineOperation(Util.MenuOption menuOption, Line line, Window window) {
         switch (menuOption) {
             case INCREMENT_SIZE:
                 line.increaseSize(window);

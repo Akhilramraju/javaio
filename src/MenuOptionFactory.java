@@ -1,40 +1,40 @@
 public class MenuOptionFactory {
 
-    public static Utils.MenuOption getMenuOption(char menuKeyword) {
-        Utils.MenuOption option = null;
+    public static Util.MenuOption getMenuOption(char menuKeyword) {
+        Util.MenuOption option = null;
         switch (menuKeyword) {
             case 'a':
-                option = Utils.MenuOption.ADD;
+                option = Util.MenuOption.ADD;
                 break;
             case 'e':
-                option = Utils.MenuOption.ERASE;
+                option = Util.MenuOption.ERASE;
                 break;
             case 's':
-                option = Utils.MenuOption.SELECT;
+                option = Util.MenuOption.SELECT;
                 break;
             case 'w':
-                option = Utils.MenuOption.WRITE;
+                option = Util.MenuOption.WRITE;
                 break;
             case 'q':
-                option = Utils.MenuOption.QUIT;
+                option = Util.MenuOption.QUIT;
                 break;
             case 'u':
-                option = Utils.MenuOption.UP;
+                option = Util.MenuOption.UP;
                 break;
             case 'd':
-                option = Utils.MenuOption.DOWN;
+                option = Util.MenuOption.DOWN;
                 break;
             case 'l':
-                option = Utils.MenuOption.LEFT;
+                option = Util.MenuOption.LEFT;
                 break;
             case 'r':
-                option = Utils.MenuOption.RIGHT;
+                option = Util.MenuOption.RIGHT;
                 break;
             case '+':
-                option = Utils.MenuOption.INCREMENT_SIZE;
+                option = Util.MenuOption.INCREMENT_SIZE;
                 break;
             case '-':
-                option = Utils.MenuOption.DECREMENT_SIZE;
+                option = Util.MenuOption.DECREMENT_SIZE;
                 break;
         }
         return option;

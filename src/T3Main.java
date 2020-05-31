@@ -3,7 +3,7 @@ import java.io.IOException;
 
 public class T3Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         // Create a window
         Window w = new Window(20, 30, '*');
 // Draw the ground

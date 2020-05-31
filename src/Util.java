@@ -1,4 +1,4 @@
-public class Utils {
+public class Util {
 
     public static int CORRECT_OPTION = 0;
     public static int QUIT_OPTION = 1;

@@ -1,6 +1,6 @@
 public class HouseForSale {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // Create a window
         Window w = new Window(20, 30, '*');
 // Draw the ground

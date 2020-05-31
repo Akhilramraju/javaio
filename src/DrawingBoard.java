@@ -10,9 +10,9 @@ public class DrawingBoard {
         int response = 100; //some random init value
 
         Shape selectedShape = null;
-        Scanner scanner = new Scanner(System.in);
-        String userInput = getFileInput(scanner);
-        Window window = getWindowShape(scanner, userInput);
+        Scanner scan = new Scanner(System.in);
+        String userInput = getFileInput(scan);
+        Window window = getWindowShape(scan, userInput);
         if (window == null) {
             Logger.println("Oops something went wrong while reading file, closing Program");
             return;
@@ -21,13 +21,13 @@ public class DrawingBoard {
         //display window either new or from file
 
         do {
-            menuOptionKeyword = getUserInputForMenu(scanner);
-            response = onMenuOptionEnter(menuOptionKeyword, scanner, window, selectedShape);
-        } while (response != Utils.QUIT_OPTION);
+            menuOptionKeyword = getUserInputForMenu(scan);
+            response = onMenuOptionEnter(menuOptionKeyword, scan, window, selectedShape);
+        } while (response != Util.QUIT_OPTION);
         Logger.println("Thank You!");
     }
 
-    private static void displayWindowWithMenu(Window windowShape) {
+    private static void displayWindowWithMenu(Window windowShape) throws Exception {
         Logger.addNewLine();
         windowShape.addTheGrid();
         windowShape.showDisplay();
@@ -65,7 +65,7 @@ public class DrawingBoard {
         return userFile.equals("NEW");
     }
 
-    private static Window createNewWindowShape(Scanner scan) {
+    private static Window createNewWindowShape(Scanner scan) throws Exception {
         String userWidowParamsInput = getNewWindowParams(scan);
         String[] windowParam = userWidowParamsInput.split(" ");
         int windowRow = Integer.parseInt(windowParam[0]);
@@ -83,8 +83,8 @@ public class DrawingBoard {
         return scan.nextLine().charAt(0);
     }
 
-    private static int onMenuOptionEnter(char menuOptionsKeyword, Scanner scan, Window windowShape, Shape selectdShape) {
-        Utils.MenuOption option = MenuOptionFactory.getMenuOption(menuOptionsKeyword);
+    private static int onMenuOptionEnter(char menuOptionsKeyword, Scanner scan, Window windowShape, Shape selectdShape) throws Exception {
+        Util.MenuOption option = MenuOptionFactory.getMenuOption(menuOptionsKeyword);
         if (option == null) {
             Logger.println("Incorrect option provided, please provide correct input");
             return -1; // user entered some incorrect option from menu
@@ -103,30 +103,30 @@ public class DrawingBoard {
                 onWriteOptionsSelected(scan, windowShape);
                 break;
             case QUIT:
-                return Utils.QUIT_OPTION; //user has asked to quit
+                return Util.QUIT_OPTION; //user has asked to quit
             case UP:
-                onShapesModified(scan, windowShape, Utils.MenuOption.UP);
+                onShapesModified(scan, windowShape, Util.MenuOption.UP);
                 break;
             case DOWN:
-                onShapesModified(scan, windowShape, Utils.MenuOption.DOWN);
+                onShapesModified(scan, windowShape, Util.MenuOption.DOWN);
                 break;
             case LEFT:
-                onShapesModified(scan, windowShape, Utils.MenuOption.LEFT);
+                onShapesModified(scan, windowShape, Util.MenuOption.LEFT);
                 break;
             case RIGHT:
-                onShapesModified(scan, windowShape, Utils.MenuOption.RIGHT);
+                onShapesModified(scan, windowShape, Util.MenuOption.RIGHT);
                 break;
             case DECREMENT_SIZE:
-                onShapesModified(scan, windowShape, Utils.MenuOption.DECREMENT_SIZE);
+                onShapesModified(scan, windowShape, Util.MenuOption.DECREMENT_SIZE);
                 break;
             case INCREMENT_SIZE:
-                onShapesModified(scan, windowShape, Utils.MenuOption.INCREMENT_SIZE);
+                onShapesModified(scan, windowShape, Util.MenuOption.INCREMENT_SIZE);
                 break;
         }
-        return Utils.CORRECT_OPTION; // correct menu option apart from exit
+        return Util.CORRECT_OPTION; // correct menu option apart from exit
     }
 
-    private static void onWriteOptionsSelected(Scanner scan, Window windowShape) {
+    private static void onWriteOptionsSelected(Scanner scan, Window windowShape) throws Exception {
         Logger.println("File name: ");
         String fileName = scan.nextLine();
         try {
@@ -138,7 +138,7 @@ public class DrawingBoard {
     }
 
     //todo : I still override the border when shapes are moved or modified, please fixme , I love my borders.
-    private static void onShapesModified(Scanner scan, Window windowShape, Utils.MenuOption options) {
+    private static void onShapesModified(Scanner scan, Window windowShape, Util.MenuOption options) throws Exception {
         if (selectItemPosition < windowShape.shapes.size() && selectItemPosition >= 0) {
             Shape shapeSelected = windowShape.shapes.get(selectItemPosition);
             if (shapeSelected instanceof Line) {
@@ -152,7 +152,7 @@ public class DrawingBoard {
         }
     }
 
-    private static void onSelectOptionsSelected(Scanner scan, Window windowShape, Shape selectedOnShape) {
+    private static void onSelectOptionsSelected(Scanner scan, Window windowShape, Shape selectedOnShape) throws Exception {
         int windowSize = windowShape.shapes.size();
         printShapesWithSpec(windowShape, windowSize);
         try {
@@ -165,7 +165,7 @@ public class DrawingBoard {
         displayWindowWithMenu(windowShape);
     }
 
-    private static void onEraseOptionsSelected(Scanner scan, Window windowShape) {
+    private static void onEraseOptionsSelected(Scanner scan, Window windowShape) throws Exception {
         int windowSize = windowShape.shapes.size();
         int eraseItemPosition = -1;
         printShapesWithSpec(windowShape, windowSize);
@@ -189,7 +189,7 @@ public class DrawingBoard {
         }
     }
 
-    private static void onAddSelected(Scanner scan, Window windowShape) {
+    private static void onAddSelected(Scanner scan, Window windowShape) throws Exception {
         Logger.println("line rowBase colBase length rowIncrement colIncrement character");
         String[] lineParam = scan.nextLine().split(" ");
         int baseRow = Integer.parseInt(lineParam[1]);

@@ -29,7 +29,7 @@ public class Window {
         cells = 2D array of char depicting the drawing, its size should be: [rows+2][cols+2]
         shapes = ordered list of shapes (You can use Arrays, or LinkedList as well if you want)
     */
-    public Window(int rows, int cols, char border) {
+    public Window(int rows, int cols, char border) throws Exception {
         //Initialize everything
         //Make a call to addBorders()
         this.rows = rows;
@@ -42,7 +42,7 @@ public class Window {
         addBorder(border);
     }
 
-    public static Window readSpecFile(String fileNameSelected) throws IOException {
+    public static Window readSpecFile(String fileNameSelected) throws Exception {
         File fileGiven = FileHelper.getFile(fileNameSelected);
         Scanner scan = new Scanner(fileGiven);
         scan.useDelimiter("\\."); // take entire token between    first dot(.)    and next dot(.)
@@ -60,8 +60,8 @@ public class Window {
         return windowShape;
     }
 
-    private static void createShapeAndAddWindow(Window windowShape, StringTokenizer stk, String shapeSelected, int shapeOfRow, int shapeofCol) {
-        Utils.ShapeOption optionSelected = ShapeOptionFactory.getShapeOption(shapeSelected);
+    private static void createShapeAndAddWindow(Window windowShape, StringTokenizer stk, String shapeSelected, int shapeOfRow, int shapeofCol) throws Exception {
+        Util.ShapeOption optionSelected = ShapeOptionFactory.getShapeOption(shapeSelected);
         switch (optionSelected) {
             case LINE:
                 Line line = getTheLine(stk, shapeOfRow, shapeofCol);
@@ -122,7 +122,7 @@ public class Window {
         return new Line(shapeofRow, shapeOfCol, lengthInput, rowIncrement, colIncrement, drawingCharacterInput);
     }
 
-    private static Window getTheWindow(Scanner scan) {
+    private static Window getTheWindow(Scanner scan) throws Exception {
         String entireWindowParam = scan.next();
         StringTokenizer windowParamsTokenizer = new StringTokenizer(entireWindowParam);
         //window param first
@@ -151,7 +151,7 @@ public class Window {
     // We choose it to be accessible at package level as the safest
    
 
-    public void addTheShape(Shape shapeInput) {
+    public void addTheShape(Shape shapeInput) throws Exception {
         //add shape to the collection
         this.shapes.add(shapeInput);
         //call  draw() method of the shape to draw itself on the window
@@ -160,8 +160,8 @@ public class Window {
         }
     }
 
-    void setTheCell(int rowInput, int colInput, char character) {
-        //set the character at cells[row][col] to 'ch'
+    void setTheCell(int rowInput, int colInput, char character) throws Exception {
+        //setting the character at cells [row][col] to 'ch'
         this.cells[rowInput][colInput] = character;
     }
     //define other methods as needed...
@@ -174,7 +174,7 @@ public class Window {
         return columnInput == firstColumnBorder || columnInput == lastColumnBorder;
     }
 
-    protected void addBorder(char character) {
+    protected void addBorder(char character) throws Exception {
 
         for (int currentRow = firstRowBorder; currentRow <= lastRowBorder; ++currentRow) { // outer loop for row
             for (int currentColumn = firstColumnBorder; currentColumn <= lastColumnBorder; ++currentColumn) { //inner loop for column
@@ -219,7 +219,7 @@ public class Window {
         return specif.toString();
     }
 
-    public void addTheGrid() {
+    public void addTheGrid() throws Exception {
         int rowGridNum = 0;
         int columnGridNum = 0;
         for (int currRow = firstRowBorder; currRow <= lastRowBorder; ++currRow) { // outer loop for row
@@ -248,14 +248,14 @@ public class Window {
     }
 
 
-    public void refreshTheImage() {
+    public void refreshTheImage() throws Exception {
         clearTheWindow();
         for (Shape item : shapes) { //redraw shapes
             item.draw(this);
         }
     }
 
-    private void clearTheWindow() {
+    private void clearTheWindow() throws Exception {
         for (int currRow = firstRowBorder; currRow <= lastRowBorder; ++currRow) { // outer loop for row
             for (int currColumn = firstColumnBorder; currColumn <= lastColumnBorder; ++currColumn) { //inner loop for column
                 if (isFirstOrLastRowBorder(currRow)) {

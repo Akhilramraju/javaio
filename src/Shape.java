@@ -18,7 +18,7 @@ public abstract class Shape {
         this.character = character;
     }
 
-    public abstract void draw(Window window);
+    public abstract void draw(Window window) throws Exception;
 
     //you might need to add more abstract/concrete methods in this class...
     protected abstract StringBuilder buildSpecsInFormat();

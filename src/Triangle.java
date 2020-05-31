@@ -20,7 +20,7 @@ public class Triangle extends Shape {
         this.cb = colBase;
     }
 
-    public void draw(Window window) {
+    public void draw(Window window) throws Exception {
         //assuming row position of the base point of this triangle is 'rb'
         //assuming column position of the base point of this triangle is 'cb'
         //assuming the drawing character is 'character'

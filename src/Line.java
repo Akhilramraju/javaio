@@ -17,7 +17,7 @@ public class Line extends Shape {
         this.character = drawingCharacter;
     }
 
-    public void draw(Window window) {
+    public void draw(Window window) throws Exception {
         int row = rb + 1;
         int col = cb + 1;
         for (int i = 0; i <= length; i++) {
@@ -34,10 +34,10 @@ public class Line extends Shape {
     //define other methods...
     protected void decrementRowBase(Window window) {
         --this.rb;
-        isOverlappingWindow(window, Utils.MenuOption.UP);
+        isOverlappingWindow(window, Util.MenuOption.UP);
     }
 
-    void isOverlappingWindow(Window window, Utils.MenuOption option) {
+    void isOverlappingWindow(Window window, Util.MenuOption option) {
         if (rInc == 0 && cInc == 1) { //detect type of line
             //this is the line which only grows horizontally in East from basepoint
             switch (option) { //detect user move
@@ -415,27 +415,27 @@ public class Line extends Shape {
 
     protected void incrementRowBase(Window window) {
         ++this.rb;
-        isOverlappingWindow(window, Utils.MenuOption.DOWN);
+        isOverlappingWindow(window, Util.MenuOption.DOWN);
     }
 
     protected void incrementColBase(Window window) {
         ++this.cb;
-        isOverlappingWindow(window, Utils.MenuOption.RIGHT);
+        isOverlappingWindow(window, Util.MenuOption.RIGHT);
     }
 
     protected void decrementColBase(Window window) {
         --this.cb;
-        isOverlappingWindow(window, Utils.MenuOption.LEFT);
+        isOverlappingWindow(window, Util.MenuOption.LEFT);
     }
 
     protected void increaseSize(Window window) {
         ++this.length;
-        isOverlappingWindow(window, Utils.MenuOption.INCREMENT_SIZE);
+        isOverlappingWindow(window, Util.MenuOption.INCREMENT_SIZE);
     }
 
     protected void decreaseSize(Window window) {
         --this.length;
-        isOverlappingWindow(window, Utils.MenuOption.DECREMENT_SIZE);
+        isOverlappingWindow(window, Util.MenuOption.DECREMENT_SIZE);
     }
 
     @Override

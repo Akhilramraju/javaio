@@ -19,7 +19,7 @@ public class Rectangle extends Shape {
         this.character = drawingCharacter;
     }
 
-    public void draw(Window window) {
+    public void draw(Window window) throws Exception {
         //treat the rectangle as four lines
 
         //Line line1 = new Line(/*appropriate parameters goes here*/);
